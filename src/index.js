@@ -1,8 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import {registerApplication, start} from 'single-spa';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+registerApplication(
+    // Name of our single-spa application
+    'root',
+    // Our loading function
+    () => import('./root.app.js'),
+    // Our activity function
+    () => true
+  );
+
+  start();
+  registerServiceWorker();
