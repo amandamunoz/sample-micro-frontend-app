@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import singleSpaReact from 'single-spa-react';
 // The top level React Component
-import App from './App.js';
+import Nav from './Nav.js';
 
 const reactLifecycles = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: App,
-  domElementGetter,
+  rootComponent: Nav,
+  domElementGetter: () => document.getElementById("nav")
 });
+
 
 export const bootstrap = [
   reactLifecycles.bootstrap,
@@ -22,8 +23,3 @@ export const mount = [
 export const unmount = [
   reactLifecycles.unmount,
 ];
-
-// Establishes where single-spa will mount our application  
-function domElementGetter() {
-  return document.getElementById("root");
-}

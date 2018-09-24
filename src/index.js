@@ -3,13 +3,31 @@ import registerServiceWorker from './registerServiceWorker';
 import {registerApplication, start} from 'single-spa';
 
 registerApplication(
-    // Name of our single-spa application
-    'root',
-    // Our loading function
-    () => import('./root.app.js'),
-    // Our activity function
+    'nav',
+    () => import('./nav/nav.app.js'),
+    // this will always mount
     () => true
   );
 
-  start();
-  registerServiceWorker();
+registerApplication(
+    'vue',
+    () => import('./vue/vue.app.js'),
+    // this will only mount for the /vue path
+    pathPrefix('/vue')
+);
+
+registerApplication(
+    'react-2',
+    () => import('./react/react.app.js'),
+    // this will only mount for the /react path
+    pathPrefix('/react')
+);
+
+start();
+registerServiceWorker();
+
+function pathPrefix(prefix) {
+    return function(location) {
+        return location.pathname.startsWith(`${prefix}`);
+    }
+}
