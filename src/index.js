@@ -17,7 +17,7 @@ registerApplication(
 );
 
 registerApplication(
-    'react-2',
+    'react',
     () => import('./react/react.app.js'),
     // this will only mount for the /react path
     pathPrefix('/react')

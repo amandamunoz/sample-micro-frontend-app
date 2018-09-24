@@ -8,7 +8,7 @@ const navBar = singleSpaReact({
   React,
   ReactDOM,
   rootComponent: App,
-  domElementGetter: () => document.getElementById('react-2')
+  domElementGetter: () => document.getElementById('react')
 });
 
 
